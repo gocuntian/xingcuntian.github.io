@@ -367,7 +367,7 @@ Full-Width Styles
     border: 1px solid lightpink;
     min-height: 100px;
     min-width: 800px;
-    max-width: 1924px;
+    height: 520px;
     margin: 5px auto;
     clear:both;
     padding:0;
@@ -375,20 +375,20 @@ Full-Width Styles
 }
 #left_content{
     border: 1px solid #0086b3;
-    height: 500px;
+    height: 490px;
     min-width: 250px;
     float: left;
 }
 #center_content{
     border: 1px solid #ccccff;
-    height: 500px;
+    height: 490px;
     min-width: 260px;
     margin: 0 8px;
     float: left;
 }
 #right_content{
     border: 1px solid lightgreen;
-    height: 500px;
+    height: 490px;
     min-width: 250px;
     float: left;
 }
