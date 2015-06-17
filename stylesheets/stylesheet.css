@@ -369,9 +369,8 @@ Full-Width Styles
     min-width: 800px;
     height: 520px;
     margin: 5px auto;
+    padding: 3px auto;
     clear:both;
-    padding:0;
-
 }
 #left_content{
     border: 1px solid #0086b3;
