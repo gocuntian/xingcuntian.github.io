@@ -366,9 +366,9 @@ Full-Width Styles
 #main_contents{
     border: 2px solid lightpink;
     min-height: 100px;
-    min-width: 800px;
-    height: 520px;
-    margin: 5px auto;
+    min-width: 790px;
+    height: 500px;
+    margin: 3px auto;
     padding: 3px 2px;
     background-color: #fff;
     clear:both;
