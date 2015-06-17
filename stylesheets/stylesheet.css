@@ -365,7 +365,7 @@ Full-Width Styles
     margin: 0px auto;
 }
 #main_contents{
-    border: 2px solid lightpink;
+    border: 0;
     min-height: 100px;
     min-width: 784px;
     height: 496px;
