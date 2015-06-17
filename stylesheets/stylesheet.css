@@ -375,14 +375,14 @@ Full-Width Styles
     clear:both;
 }
 #left_content{
-    border: 1px solid #0086b3;
+    border: 1px solid snow;
     height: 490px;
     min-width: 250px;
     float: left;
     background-color: #fff;
 }
 #center_content{
-    border: 1px solid #ccccff;
+    border: 1px solid snow;
     height: 490px;
     min-width: 260px;
     margin: 0 8px;
@@ -390,7 +390,7 @@ Full-Width Styles
     background-color: #fff;
 }
 #right_content{
-    border: 1px solid lightgreen;
+    border: 1px solid snow;
     height: 490px;
     min-width: 250px;
     float: left;
