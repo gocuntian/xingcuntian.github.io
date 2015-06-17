@@ -378,6 +378,7 @@ Full-Width Styles
     height: 490px;
     min-width: 250px;
     float: left;
+    background-color: #fff;
 }
 #center_content{
     border: 1px solid #ccccff;
@@ -385,12 +386,14 @@ Full-Width Styles
     min-width: 260px;
     margin: 0 8px;
     float: left;
+    background-color: #fff;
 }
 #right_content{
     border: 1px solid lightgreen;
     height: 490px;
     min-width: 250px;
     float: left;
+    background-color: #fff;
 }
 
 
