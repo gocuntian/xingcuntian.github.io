@@ -366,14 +366,11 @@ Full-Width Styles
 #main_contents{
     border: 1px solid lightpink;
     min-height: 100px;
-    height: 600px;
     min-width: 800px;
     max-width: 1924px;
     margin: 5px auto;
     clear:both;
-    // border:0;
     padding:0;
-    margin:0;
 
 }
 #left_content{
