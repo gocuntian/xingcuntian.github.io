@@ -361,8 +361,34 @@ Full-Width Styles
 }
 
 #main_content {
-  padding-top: 40px;
+  padding-top: 20px;
 }
+#main_contents{
+    border: 1px solid lightpink;
+    min-height: 100px;
+    height: 600px;
+    min-width: 800px;
+    max-width: 1024px;
+    margin: 5px auto;
+        
+}
+#left_content{
+    border: 1px solid #0086b3;
+    height: 500px;
+    min-width: 260px;
+}
+#center_content{
+    border: 1px solid #ccccff;
+    height: 500px;
+    min-width: 260px;
+    margin: 0 8px;
+}
+#right_content{
+    border: 1px solid lightgreen;
+    height: 500px;
+    min-width: 260px;
+}
+
 
 #footer_wrap {
   background: #212121;
