@@ -364,12 +364,13 @@ Full-Width Styles
     padding-top: 20px;
 }
 #main_contents{
-    border: 1px solid lightpink;
+    border: 2px solid lightpink;
     min-height: 100px;
     min-width: 800px;
     height: 520px;
     margin: 5px auto;
-    padding: 3px auto;
+    padding: 3px 2px;
+    background-color: #fff;
     clear:both;
 }
 #left_content{
