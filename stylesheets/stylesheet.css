@@ -379,7 +379,7 @@ Full-Width Styles
 #left_content{
     border: 1px solid #0086b3;
     height: 500px;
-    min-width: 260px;
+    min-width: 250px;
     float: left;
 }
 #center_content{
@@ -392,7 +392,7 @@ Full-Width Styles
 #right_content{
     border: 1px solid lightgreen;
     height: 500px;
-    min-width: 260px;
+    min-width: 250px;
     float: left;
 }
 
