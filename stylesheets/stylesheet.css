@@ -362,6 +362,7 @@ Full-Width Styles
 
 #main_content {
     padding-top: 20px;
+    margin: 0px auto;
 }
 #main_contents{
     border: 2px solid lightpink;
