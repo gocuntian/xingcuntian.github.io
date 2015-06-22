@@ -381,7 +381,7 @@ Full-Width Styles
     float: left;
     text-indent: 2em;
     background-color: #fff;
-    border-left: 2px dashed  #ffcccc;
+    border-left: 2px dashed #66ff33;
 }
 #center_content{
     //border: 1px solid snow;
@@ -391,7 +391,7 @@ Full-Width Styles
     float: left;
     text-indent: 2em;
     font-family: '微软雅黑';
-    border-left: 2px dashed  #ffcccc;
+    border-left: 2px dashed  #66ff33;
     background-color: #fff;
 }
 #right_content{
@@ -401,7 +401,7 @@ Full-Width Styles
     float: left;
     text-indent: 2em;
     font-family: '微软雅黑';
-    border-left: 2px dashed  #ffcccc;
+    border-left: 2px dashed  #66ff33;
     background-color: #fff;
 }
 
