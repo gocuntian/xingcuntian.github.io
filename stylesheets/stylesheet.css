@@ -376,6 +376,7 @@ Full-Width Styles
 }
 #left_content{
     border: 1px solid snow;
+    border-left: 1px solid  #ffcccc;
     height: 490px;
     min-width: 250px;
     float: left;
@@ -390,7 +391,8 @@ Full-Width Styles
     float: left;
     text-indent: 2em;
     font-family: '微软雅黑';
-    background-color: #ffcccc;
+    border-left: 1px solid  #ffcccc;
+    background-color: floralwhite;
 }
 #right_content{
     border: 1px solid snow;
@@ -399,7 +401,7 @@ Full-Width Styles
     float: left;
     text-indent: 2em;
     font-family: '微软雅黑';
-    background-color: #00cc66;
+    background-color: floralwhite;
 }
 
 
