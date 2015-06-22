@@ -379,6 +379,7 @@ Full-Width Styles
     height: 490px;
     min-width: 250px;
     float: left;
+    text-indent: 2em;
     background-color: #fff;
 }
 #center_content{
@@ -387,6 +388,7 @@ Full-Width Styles
     min-width: 260px;
     margin: 0 8px;
     float: left;
+    text-indent: 2em;
     background-color: #fff;
 }
 #right_content{
@@ -394,6 +396,7 @@ Full-Width Styles
     height: 490px;
     min-width: 250px;
     float: left;
+    text-indent: 2em;
     background-color: #fff;
 }
 
