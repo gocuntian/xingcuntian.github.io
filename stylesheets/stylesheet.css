@@ -375,8 +375,7 @@ Full-Width Styles
     clear:both;
 }
 #left_content{
-    border: 1px solid snow;
-    border-left: 1px solid  #ffcccc;
+    //border: 1px solid snow;
     height: 490px;
     min-width: 250px;
     float: left;
@@ -384,7 +383,7 @@ Full-Width Styles
     background-color: #fff;
 }
 #center_content{
-    border: 1px solid snow;
+    //border: 1px solid snow;
     height: 490px;
     min-width: 260px;
     margin: 0 8px;
@@ -395,12 +394,13 @@ Full-Width Styles
     background-color: floralwhite;
 }
 #right_content{
-    border: 1px solid snow;
+   // border: 1px solid snow;
     height: 490px;
     min-width: 250px;
     float: left;
     text-indent: 2em;
     font-family: '微软雅黑';
+    border-left: 1px solid  #ffcccc;
     background-color: floralwhite;
 }
 
