@@ -5,13 +5,22 @@ by Jason Costello, @jsncostello
 
 @import url(github-light.css);
 #col_left{
+    height: 490px;
+    min-width: 250px;
     border-left: 2px dashed  #66ff33;
 }
 #col_center{
+    height: 490px;
+    min-width: 250px;
     border-left: 2px dashed  #66ff33;
 }
 #col_right{
+    height: 490px;
+    min-width: 250px;
     border-left: 2px dashed  #66ff33;
+}
+#content{
+    margin: 5px auto;
 }
 
 
