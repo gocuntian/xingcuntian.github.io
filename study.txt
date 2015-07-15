@@ -1,0 +1,77 @@
+DOMDocument extends DOMNode {
+/* 属性 */
+readonly public string $actualEncoding ;
+readonly public DOMConfiguration $config ;
+readonly public DOMDocumentType $doctype ;
+readonly public DOMElement $documentElement ;
+public string $documentURI ;
+public string $encoding ;//编码
+public bool $formatOutput ;
+readonly public DOMImplementation $implementation ;
+public bool $preserveWhiteSpace = true ;
+public bool $recover ;
+public bool $resolveExternals ;
+public bool $standalone ;
+public bool $strictErrorChecking = true ;
+public bool $substituteEntities ;
+public bool $validateOnParse = false ;
+public string $version ;
+readonly public string $xmlEncoding ;
+public bool $xmlStandalone ;
+public string $xmlVersion ;
+/* 方法 */
+public __construct ([ string $version [, string $encoding ]] )
+public DOMAttr createAttribute ( string $name )
+public DOMAttr createAttributeNS ( string $namespaceURI , string $qualifiedName )
+public DOMCDATASection createCDATASection ( string $data )
+public DOMComment createComment ( string $data )
+public DOMDocumentFragment createDocumentFragment ( void )
+public DOMElement createElement ( string $name [, string $value ] )
+public DOMElement createElementNS ( string $namespaceURI , string $qualifiedName [, string $value ] )
+public DOMEntityReference createEntityReference ( string $name )
+public DOMProcessingInstruction createProcessingInstruction ( string $target [, string $data ] )
+public DOMText createTextNode ( string $content )
+public DOMElement getElementById ( string $elementId )
+public DOMNodeList getElementsByTagName ( string $name )
+public DOMNodeList getElementsByTagNameNS ( string $namespaceURI , string $localName )
+public DOMNode importNode ( DOMNode $importedNode [, bool $deep ] )
+public mixed load ( string $filename [, int $options = 0 ] )
+public bool loadHTML ( string $source [, int $options = 0 ] )
+public bool loadHTMLFile ( string $filename [, int $options = 0 ] )
+public mixed loadXML ( string $source [, int $options = 0 ] )
+public void normalizeDocument ( void )
+public bool registerNodeClass ( string $baseclass , string $extendedclass )
+public bool relaxNGValidate ( string $filename )
+public bool relaxNGValidateSource ( string $source )
+public int save ( string $filename [, int $options ] )
+public string saveHTML ([ DOMNode $node = NULL ] )
+public int saveHTMLFile ( string $filename )
+public string saveXML ([ DOMNode $node [, int $options ]] )
+public bool schemaValidate ( string $filename [, int $flags ] )
+public bool schemaValidateSource ( string $source [, int $flags ] )
+public bool validate ( void )
+public int xinclude ([ int $options ] )
+/* 继承的方法 */
+public DOMNode DOMNode::appendChild ( DOMNode $newnode )
+public string DOMNode::C14N ([ bool $exclusive [, bool $with_comments [, array $xpath [, array $ns_prefixes ]]]] )
+public int DOMNode::C14NFile ( string $uri [, bool $exclusive [, bool $with_comments [, array $xpath [, array $ns_prefixes ]]]] )
+public DOMNode DOMNode::cloneNode ([ bool $deep ] )
+public int DOMNode::getLineNo ( void )
+public string DOMNode::getNodePath ( void )
+public bool DOMNode::hasAttributes ( void )
+public bool DOMNode::hasChildNodes ( void )
+public DOMNode DOMNode::insertBefore ( DOMNode $newnode [, DOMNode $refnode ] )
+public bool DOMNode::isDefaultNamespace ( string $namespaceURI )
+public bool DOMNode::isSameNode ( DOMNode $node )
+public bool DOMNode::isSupported ( string $feature , string $version )
+public string DOMNode::lookupNamespaceURI ( string $prefix )
+public string DOMNode::lookupPrefix ( string $namespaceURI )
+public void DOMNode::normalize ( void )
+public DOMNode DOMNode::removeChild ( DOMNode $oldnode )
+public DOMNode DOMNode::replaceChild ( DOMNode $newnode , DOMNode $oldnode )
+}
+
+
+
+
+
