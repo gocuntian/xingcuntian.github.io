@@ -100,13 +100,10 @@
                             from_encoding  在转换前通过字符代码名称来指定。它可以是一个 array 也可以是逗号分隔的枚举列表。 如果没有提供 from_encoding，则会使用内部（internal）编码。
                         /* 转换内部编码为 SJIS */
                         $str = mb_convert_encoding($str, "SJIS");
-
                         /* 将 EUC-JP 转换成 UTF-7 */
                         $str = mb_convert_encoding($str, "UTF-7", "EUC-JP");
-
                         /* 从 JIS, eucjp-win, sjis-win 中自动检测编码，并转换 str 到 UCS-2LE */
                         $str = mb_convert_encoding($str, "UCS-2LE", "JIS, eucjp-win, sjis-win");
-
                         /* "auto" 扩展成 "ASCII,JIS,UTF-8,EUC-JP,SJIS" */
                         $str = mb_convert_encoding($str, "EUC-JP", "auto");</p>
                 </div>
