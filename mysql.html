@@ -1,0 +1,144 @@
+<code class="language-bash hljs"><span class="hljs-comment"><span class="hljs-comment">#添加可能需要的包</span></span>
+sudo apt-get -y install libpcre3-dev build-essential zlib1g-dev libpam0g-dev libssl-dev libperl-dev libxml2-dev gettext libncurses5-dev flex bison gawk cmake
+
+<span class="hljs-comment"><span class="hljs-comment">#MySQL安装</span></span>
+<span class="hljs-comment"><span class="hljs-comment"># 修正为以下的语句, 设置mysql无home目录, 无登录权限</span></span>
+sudo /usr/sbin/groupadd mysql
+sudo /usr/sbin/useradd -r -g mysql <span class="hljs-_">-s</span> /bin/<span class="hljs-literal">false</span> -M mysql
+
+<span class="hljs-comment"><span class="hljs-comment">#创建MySQL数据库存放目录</span></span>
+sudo mkdir -p /web/mysqldata
+sudo chmod +w /web/mysqldata
+sudo chown -R mysql:mysql /web/mysqldata
+
+wget <span class="hljs-keyword">http</span>://mirrors.sohu.com/mysql/MySQL<span class="hljs-number">-8.0</span>/mysql-boost<span class="hljs-number">-8.0</span><span class="hljs-number">.0</span>-dmr.tar.gz
+tar xf mysql-boost<span class="hljs-number">-8.0</span><span class="hljs-number">.0</span>-dmr.tar.gz
+<span class="hljs-built_in"><span class="hljs-keyword">cd</span></span> mysql<span class="hljs-number">-8.0</span><span class="hljs-number">.0</span>-dmr/
+sudo cmake -DCMAKE_INSTALL_PREFIX=/usr/<span class="hljs-built_in">local</span>/mysql -DMYSQL_DATADIR=/usr/<span class="hljs-built_in">local</span>/mysql/data -DSYSCONFDIR=/etc -DWITH_ARCHIVE_STORAGE_ENGINE=<span class="hljs-number">1</span> -DWITH_BLACKHOLE_STORAGE_ENGINE=<span class="hljs-number">1</span> -DWITH_EXAMPLE_STORAGE_ENGINE=<span class="hljs-number">1</span> -DWITH_FEDERATED_STORAGE_ENGINE=<span class="hljs-number">1</span> -DWITH_INNOBASE_STORAGE_ENGINE=<span class="hljs-number">1</span> -DWITH_PERFSCHEMA_STORAGE_ENGINE=<span class="hljs-number">1</span> -DMYSQL_UNIX_ADDR=/tmp/mysql.sock -DMYSQL_TCP_PORT=<span class="hljs-number">3306</span> -DENABLED_LOCAL_INFILE=<span class="hljs-number">1</span> -DENABLE_DTRACE=<span class="hljs-number">0</span> -DDEFAULT_CHARSET=utf8mb4 -DDEFAULT_COLLATION=utf8mb4_general_ci -DWITH_EMBEDDED_SERVER=<span class="hljs-number">1</span> -DWITH_BOOST=./boost
+sudo make -j `grep processor /<span class="hljs-keyword">proc</span>/cpuinfo |<span class="hljs-title"> wc</span> <span class="hljs-_">-l</span>`<span class="hljs-title">
+sudo</span> make<span class="hljs-title"> install</span> -j `grep<span class="hljs-title"> processor</span> /<span class="hljs-keyword">proc</span>/cpuinfo |<span class="hljs-title"> wc</span> <span class="hljs-_">-l</span>`<span class="hljs-title">
+sudo</span> ln <span class="hljs-_">-s</span>  /web/mysqldata /usr/<span class="hljs-built_in">local</span>/mysql/data<span class="hljs-title">
+sudo</span> chmod +w /usr/<span class="hljs-built_in">local</span>/mysql<span class="hljs-title">
+sudo</span> chown -R<span class="hljs-title"> mysql:mysql</span> /usr/<span class="hljs-built_in">local</span>/mysql<span class="hljs-title">
+sudo</span> chmod +w /usr/<span class="hljs-built_in">local</span>/mysql/data<span class="hljs-title">
+sudo</span> chown -R<span class="hljs-title"> mysql:mysql</span> /usr/<span class="hljs-built_in">local</span>/mysql/data<span class="hljs-title">
+sudo</span> /sbin/ldconfig
+
+<span class="hljs-comment">#创建my.cnf配置文件</span><span class="hljs-title">
+sudo</span> rm -fr /etc/my.cnf<span class="hljs-title">
+sudo</span> vi /etc/my.cnf
+[client]<span class="hljs-title">
+port</span> = 3306<span class="hljs-title">
+socket</span> = /tmp/mysql.sock<span class="hljs-title">
+default-character-set</span> =<span class="hljs-title"> utf8mb4</span>
+
+[mysql]<span class="hljs-title">
+prompt=</span> \u@\h [\d]&gt;\_<span class="hljs-title">
+no-auto-rehash</span>
+
+[mysqld]<span class="hljs-title">
+port</span> = 3306<span class="hljs-title">
+socket</span> = /tmp/mysql.sock<span class="hljs-title">
+
+basedir</span> = /usr/<span class="hljs-built_in">local</span>/mysql<span class="hljs-title">
+datadir</span> = /usr/<span class="hljs-built_in">local</span>/mysql/data<span class="hljs-title">
+pid-file</span> = /usr/<span class="hljs-built_in">local</span>/mysql/data/mysql.pid<span class="hljs-title">
+user</span> =<span class="hljs-title"> mysql</span>
+<span class="hljs-built_in">bind</span>-address = 0.0.0.0<span class="hljs-title">
+server-id</span> = 1<span class="hljs-title">
+
+init-connect</span> = <span class="hljs-string">'SET<span class="hljs-title"> NAMES</span> utf8mb4'</span><span class="hljs-title">
+character-set-server</span> =<span class="hljs-title"> utf8mb4</span>
+<span class="hljs-title">
+skip-name-resolve</span>
+<span class="hljs-comment">#skip-networking</span><span class="hljs-title">
+back_</span><span class="hljs-built_in"><span class="hljs-title">log</span></span> = 300<span class="hljs-title">
+
+max_connections</span> = 1000<span class="hljs-title">
+max_connect_errors</span> = 6000<span class="hljs-title">
+open_files_</span><span class="hljs-built_in"><span class="hljs-title">limit</span></span> = 65535<span class="hljs-title">
+table_open_cache</span> = 128<span class="hljs-title"> 
+max_allowed_packet</span> = 4M<span class="hljs-title">
+binlog_cache_size</span> = 1M<span class="hljs-title">
+max_heap_table_size</span> = 8M<span class="hljs-title">
+tmp_table_size</span> = 16M<span class="hljs-title">
+
+</span><span class="hljs-built_in"><span class="hljs-title">read</span></span><span class="hljs-title">_buffer_size</span> = 2M<span class="hljs-title">
+</span><span class="hljs-built_in"><span class="hljs-title">read</span></span><span class="hljs-title">_rnd_buffer_size</span> = 8M<span class="hljs-title">
+sort_buffer_size</span> = 8M<span class="hljs-title">
+join_buffer_size</span> = 8M<span class="hljs-title">
+key_buffer_size</span> = 4M<span class="hljs-title">
+
+thread_cache_size</span> = 8<span class="hljs-title">
+
+query_cache_</span><span class="hljs-built_in"><span class="hljs-title">type</span></span> = 0<span class="hljs-title">
+query_cache_size</span> = 0<span class="hljs-title">
+query_cache_</span><span class="hljs-built_in"><span class="hljs-title">limit</span></span> = 2M<span class="hljs-title">
+
+ft_min_word_len</span> = 4<span class="hljs-title">
+
+</span><span class="hljs-built_in"><span class="hljs-title">log</span></span><span class="hljs-title">_bin</span> =<span class="hljs-title"> mysql-bin</span>
+binlog_format =<span class="hljs-title"> mixed</span>
+expire_logs_days = 7<span class="hljs-title"> 
+
+</span><span class="hljs-built_in"><span class="hljs-title">log</span></span><span class="hljs-title">_error</span> = /usr/<span class="hljs-built_in">local</span>/mysql/data/mysql-error.log<span class="hljs-title">
+slow_query_</span><span class="hljs-built_in"><span class="hljs-title">log</span></span> = 1<span class="hljs-title">
+long_query_time</span> = 1<span class="hljs-title">
+slow_query_</span><span class="hljs-built_in"><span class="hljs-title">log</span></span><span class="hljs-title">_file</span> = /usr/<span class="hljs-built_in">local</span>/mysql/data/mysql-slow.log<span class="hljs-title">
+
+performance_schema</span> = 0<span class="hljs-title">
+explicit_defaults_</span><span class="hljs-keyword"><span class="hljs-title">for</span></span><span class="hljs-title">_timestamp</span>
+
+<span class="hljs-comment">#lower_case_table_names = 1</span><span class="hljs-title">
+
+skip-external-locking</span>
+<span class="hljs-title">
+default_storage_engine</span> =<span class="hljs-title"> InnoDB</span>
+<span class="hljs-comment">#default-storage-engine =<span class="hljs-title"> MyISAM</span></span>
+innodb_file_per_table = 1<span class="hljs-title">
+innodb_open_files</span> = 500<span class="hljs-title">
+innodb_buffer_pool_size</span> = 64M<span class="hljs-title">
+innodb_write_io_threads</span> = 4<span class="hljs-title">
+innodb_</span><span class="hljs-built_in"><span class="hljs-title">read</span></span><span class="hljs-title">_io_threads</span> = 4<span class="hljs-title">
+innodb_thread_concurrency</span> = 0<span class="hljs-title">
+innodb_purge_threads</span> = 1<span class="hljs-title">
+innodb_flush_</span><span class="hljs-built_in"><span class="hljs-title">log</span></span><span class="hljs-title">_at_trx_commit</span> = 2<span class="hljs-title">
+innodb_</span><span class="hljs-built_in"><span class="hljs-title">log</span></span><span class="hljs-title">_buffer_size</span> = 2M<span class="hljs-title">
+innodb_</span><span class="hljs-built_in"><span class="hljs-title">log</span></span><span class="hljs-title">_file_size</span> = 32M<span class="hljs-title">
+innodb_</span><span class="hljs-built_in"><span class="hljs-title">log</span></span><span class="hljs-title">_files_</span><span class="hljs-keyword"><span class="hljs-title">in</span></span><span class="hljs-title">_group</span> = 3<span class="hljs-title">
+innodb_max_dirty_pages_pct</span> = 90<span class="hljs-title">
+innodb_lock_</span><span class="hljs-built_in"><span class="hljs-title">wait</span></span><span class="hljs-title">_timeout</span> = 120<span class="hljs-title">
+
+bulk_insert_buffer_size</span> = 8M<span class="hljs-title">
+myisam_sort_buffer_size</span> = 8M<span class="hljs-title">
+myisam_max_sort_file_size</span> = 10G<span class="hljs-title">
+myisam_repair_threads</span> = 1<span class="hljs-title">
+
+interactive_timeout</span> = 28800<span class="hljs-title">
+</span><span class="hljs-built_in"><span class="hljs-title">wait</span></span><span class="hljs-title">_timeout</span> = 28800
+
+[mysqldump]<span class="hljs-title">
+quick</span>
+max_allowed_packet = 16M
+
+[myisamchk]<span class="hljs-title">
+key_buffer_size</span> = 8M<span class="hljs-title">
+sort_buffer_size</span> = 8M<span class="hljs-title">
+</span><span class="hljs-built_in"><span class="hljs-title">read</span></span><span class="hljs-title">_buffer</span> = 4M<span class="hljs-title">
+write_buffer</span> = 4M
+
+
+<span class="hljs-comment">#以mysql用户帐号的身份建立数据表</span><span class="hljs-title">
+sudo</span> /usr/<span class="hljs-built_in">local</span>/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/<span class="hljs-built_in">local</span>/mysql --datadir=/usr/<span class="hljs-built_in">local</span>/mysql/data
+<span class="hljs-comment">#创建管理MySQL数据库的shell脚本</span><span class="hljs-title">
+sudo</span> cp<span class="hljs-title"> support-files/mysql.server</span> /etc/init.d/mysqld<span class="hljs-title">
+sudo</span> chmod +x /etc/init.d/mysqld<span class="hljs-title">
+sudo</span> update-rc.d<span class="hljs-title"> mysqld</span> defaults<span class="hljs-title">
+sudo</span> service<span class="hljs-title"> mysqld</span> start
+
+<span class="hljs-comment">#MySQL用户设置</span><span class="hljs-title">
+sudo</span> /usr/<span class="hljs-built_in">local</span>/mysql/bin/mysqladmin -u<span class="hljs-title"> root</span> password <span class="hljs-string">'root'</span><span class="hljs-title">
+sudo</span> /usr/<span class="hljs-built_in">local</span>/mysql/bin/mysql -hlocalhost -u<span class="hljs-title"> root</span> -proot -P3306 -A <span class="hljs-_">-e</span> <span class="hljs-string">"grant<span class="hljs-title"> all</span> privileges<span class="hljs-title"> on</span> *.*<span class="hljs-title"> to</span> root@'127.0.0.1'<span class="hljs-title"> identified</span> by 'root'<span class="hljs-title"> with</span> grant<span class="hljs-title"> option;"</span></span>
+sudo /usr/<span class="hljs-built_in">local</span>/mysql/bin/mysql -hlocalhost -u<span class="hljs-title"> root</span> -proot -P3306 -A <span class="hljs-_">-e</span> <span class="hljs-string">"grant<span class="hljs-title"> all</span> privileges<span class="hljs-title"> on</span> *.*<span class="hljs-title"> to</span> root@'localhost'<span class="hljs-title"> identified</span> by 'root'<span class="hljs-title"> with</span> grant<span class="hljs-title"> option;"</span></span>
+sudo /usr/<span class="hljs-built_in">local</span>/mysql/bin/mysql -hlocalhost -u<span class="hljs-title"> root</span> -proot -P3306 -A <span class="hljs-_">-e</span> <span class="hljs-string">"grant<span class="hljs-title"> all</span> privileges<span class="hljs-title"> on</span> *.*<span class="hljs-title"> to</span> root@'%'<span class="hljs-title"> identified</span> by 'root'<span class="hljs-title"> with</span> grant<span class="hljs-title"> option;"</span></span>
+sudo /usr/<span class="hljs-built_in">local</span>/mysql/bin/mysql -hlocalhost -u<span class="hljs-title"> root</span> -proot -P3306 -A <span class="hljs-_">-e</span> <span class="hljs-string">"reset<span class="hljs-title"> master;"</span></span></code>
